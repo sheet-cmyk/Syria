@@ -1,0 +1,35 @@
+workflows:
+  ios-workflow:
+    name: iOS Workflow
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    cache:
+      cache_paths:
+        - ~/.cocoapods
+        - ios/Pods
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Pod install with retry
+        script: |
+          cd ios
+          attempt=1
+          max=4
+          until pod install || [ $attempt -ge $max ]; do
+            echo "Pod install failed (attempt $attempt/$max) — waiting 60s before retry..."
+            attempt=$((attempt + 1))
+            sleep 60
+          done
+          if [ $attempt -ge $max ]; then
+            echo "Pod install failed after $max attempts"
+            exit 1
+          fi
+      - name: Build iOS (no codesign)
+        script: flutter build ios --release --no-codesign
+    artifacts:
+      - build/ios/iphoneos/Runner.app
+      - "*.ipa"

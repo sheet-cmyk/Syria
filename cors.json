@@ -1,0 +1,7 @@
+[
+  {
+    "origin": ["https://flutter-acd51.web.app", "https://flutter-acd51.firebaseapp.com", "http://localhost:*"],
+    "method": ["GET", "HEAD"],
+    "maxAgeSeconds": 3600
+  }
+]

@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:name="${applicationName}">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCVJcCqBFoJjuFeAjK_nPfcHlRTmYfbEe8"/>
+
+    </application>
+</manifest>

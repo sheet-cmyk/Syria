@@ -1,0 +1,20 @@
+flutter_launcher_icons:
+  # ── الأيقونة الأساسية (iOS + Android legacy) ──
+  image_path_ios: "assets/icon Syria/iconSyria.png"
+  image_path_android: "assets/icon Syria/iconSyria.png"
+  android: "launcher_icon"
+  min_sdk_android: 21
+  ios: true
+  remove_alpha_channel_ios: true
+  remove_alpha_ios: true
+
+  # ── Android Adaptive Icon (API 26+) ──
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icon Syria/iconSyria_fg.png"
+
+  # ── الويب / PWA ──
+  web:
+    generate: true
+    image_path: "assets/icon Syria/iconSyria.png"
+    background_color: "#FFFFFF"
+    theme_color: "#FFD600"

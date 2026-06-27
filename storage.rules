@@ -1,0 +1,34 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper functions
+    function isAuth() {
+      return request.auth != null;
+    }
+    function isAdmin() {
+      return isAuth() && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Ad images - anyone can read, authenticated users can upload
+    match /ads/{adId}/{fileName} {
+      allow read: if true;
+      allow write: if isAuth() && request.resource.size < 10 * 1024 * 1024
+                      && request.resource.contentType.matches('image/.*');
+    }
+
+    // Profile images
+    match /users/{userId}/{fileName} {
+      allow read: if true;
+      allow write: if isAuth() && request.auth.uid == userId
+                      && request.resource.size < 5 * 1024 * 1024
+                      && request.resource.contentType.matches('image/.*');
+    }
+
+    // Admin uploads (videos, etc.)
+    match /admin/{path=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

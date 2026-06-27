@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.hussein.adsapp",
+      "sha256_cert_fingerprints": ["6D:44:AF:A7:14:17:64:EF:84:2A:F4:FA:BE:42:28:03:F1:37:49:A1:6A:95:81:DC:38:87:94:23:C5:DE:0D:AB"]
+    }
+  }
+]
